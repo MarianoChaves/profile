@@ -303,57 +303,59 @@ function Projects({ lang }) {
   return (
     <section id="projects" className="projects section fade-in">
       <h2>{strings[lang].projects.heading}</h2>
-
-      <div className="project-item">
-        <h3>{strings[lang].projects.wingbitsTitle}</h3>
-        <a
+      <div className="projects-container">
+        <div className="project-item">
+          <h3>{strings[lang].projects.wingbitsTitle}</h3>
+          <a
             href="https://wingbits.com" 
             target="_blank"
             rel="noopener noreferrer"
           >
-          <img
-            src="/wingbits.png"
-            alt="Wingbits"
-            className="project-image"
-          />
-        </a>
-        <p>{strings[lang].projects.wingbitsDesc}</p>
-      </div>
+            <img
+              src="/wingbits.png"
+              alt="Wingbits"
+              className="project-image"
+            />
+          </a>
+          <p>{strings[lang].projects.wingbitsDesc}</p>
+        </div>
 
-      <div className="project-item">
-        <h3>{strings[lang].projects.globalTitle}</h3>
-        <a
+        <div className="project-item">
+          <h3>{strings[lang].projects.globalTitle}</h3>
+          <a
             href="https://aws.amazon.com/solutions/case-studies/itau-ml-case-study/?nc1=h_ls" 
             target="_blank"
             rel="noopener noreferrer"
           >
-          <img
-            src="/itau.png"
-            alt="Global AI & Big Data"
-            className="project-image"
-          />
-        </a>
-        <p>{strings[lang].projects.globalDesc}</p>
-      </div>
+            <img
+              src="/itau.png"
+              alt="Global AI & Big Data"
+              className="project-image"
+            />
+          </a>
+          <p>{strings[lang].projects.globalDesc}</p>
+        </div>
 
-      <div className="project-item">
-        <h3>{strings[lang].projects.numcmcTitle}</h3>
-        <a
+        <div className="project-item">
+          <h3>{strings[lang].projects.numcmcTitle}</h3>
+          <a
             href="https://github.com/MarianoChaves/MCMC" 
             target="_blank"
             rel="noopener noreferrer"
           >
-        <img
-          src="/numcmc.png"
-          alt="nuMCMC"
-          className="project-image"
-        />
-        </a>
-        <p>{strings[lang].projects.numcmcDesc}</p>
+            <img
+              src="/numcmc.png"
+              alt="nuMCMC"
+              className="project-image"
+            />
+          </a>
+          <p>{strings[lang].projects.numcmcDesc}</p>
+        </div>
       </div>
     </section>
   );
 }
+
 
 /* =========== Contact =========== */
 function Contact({ lang }) {
