@@ -46,11 +46,10 @@ const strings = {
     },
     about: {
       heading: 'About Me',
-      text: `I'm a Data Scientist/Software Engineer and consultant with a PhD 
-             in Physics, bridging advanced research with real-world 
-             applications in AI, ML, and HPC. My focus is on building 
-             scalable, reliable systems that transform bold ideas into 
-             tangible impact, from global finance giants to award-winning startups.`,
+      text: `I'm a Data Scientist/Software Engineer and consultant with a PhD in Physics,
+             bridging advanced research with real-world applications in AI, ML, and HPC.
+             I focus on building scalable and reliable systems that transform bold ideas 
+             into real impact, from financial market giants to award-winning startups.`,
     },
     expertise: {
       heading: 'Expertise',
@@ -62,27 +61,27 @@ const strings = {
       softSkillsTitle: 'Strategic Impact',
       softSkillsList: `• Leading End-to-End Transformations
                        • Translating Complex Tech into Business ROI
-                       • Mentoring Teams & Building Innovation Culture
-                       • Sustainable, Scalable Systems Architecture`,
+                       • Mentoring Teams & Fostering an Innovation Culture
+                       • Sustainable and Scalable Systems Architecture`,
     },
     projects: {
-      heading: 'Projects I\'ve Worked On',
+      heading: 'Projects I was involved in',
       wingbitsTitle: 'Wingbits — Sweden\'s Startup of the Year',
-      wingbitsDesc: `Engineered data infrastructure for Wingbits, delivering
-                     hyper-growth readiness and a seamless user experience, 
-                     propelling them to a national accolade in 2024.`,
+      wingbitsDesc: `Contributed to the development of the data infrastructure for Wingbits,
+                     ensuring high scalability and a seamless user experience,
+                     helping them win a national award in Sweden in 2024.`,
       globalTitle: 'Global AI & Big Data Ecosystem',
-      globalDesc: `Led transformations for major finance organizations, blending HPC-level
-                   data processing with advanced AI pipelines. Implemented Terraform-based 
-                   infra & CI/CD.`,
+      globalDesc: `Leading transformations in major financial institutions,
+                   combining HPC-level data processing with advanced AI pipelines.
+                   Implemented Terraform-based infrastructure and CI/CD.`,
       numcmcTitle: 'nuMCMC — High-Performance Simulations',
-      numcmcDesc: `Created nuMCMC, an open source C++ library powering large-scale Monte Carlo 
-                   simulations. Esteemed for speed and extensibility, it's redefining HPC 
-                   innovation for scientific computing over the world.`,
+      numcmcDesc: `Created nuMCMC, an open-source C++ library for large-scale 
+                   Monte Carlo simulations. Recognized for its speed and extensibility,
+                   it is redefining HPC innovation for scientific computing worldwide.`,
     },
     contact: {
       heading: 'Collaborate',
-      text: `Ready to tackle complex data challenges or pioneer new frontiers in AI? 
+      text: `Ready to tackle complex data challenges or explore new frontiers in AI?
              Let's connect and build solutions that define the future.`,
       email: 'Email',
       linkedIn: 'LinkedIn',
@@ -108,7 +107,7 @@ const strings = {
     },
     about: {
       heading: 'Sobre Mim',
-      text: `Sou Data Scientist/Software Engineer e consultor com PhD em Física,
+      text: `Sou Cientista de Dados/Engenheiro de Software e consultor com Doutorado em Física,
              unindo pesquisa avançada a aplicações reais em IA, ML e HPC.
              Foco em criar sistemas escaláveis e confiáveis que transformam
              grandes ideias em impactos reais, desde gigantes do mercado financeiro
@@ -128,11 +127,11 @@ const strings = {
                        • Arquiteturas Sustentáveis e Escaláveis`,
     },
     projects: {
-      heading: 'Projetos que participei',
+      heading: 'Projetos envolvidos',
       wingbitsTitle: 'Wingbits — Startup do Ano na Suécia',
-      wingbitsDesc: `Criei a infraestrutura de dados para a Wingbits, garantindo
+      wingbitsDesc: `Participei da criação da infraestrutura de dados para a Wingbits, garantindo
                      alta escalabilidade e uma experiência de usuário impecável,
-                     impulsionando-os a ganhar um prêmio nacional em 2024.`,
+                     impulsionando-os a ganhar um prêmio nacional (Sueco) em 2024.`,
       globalTitle: 'Ecossistema Global de IA & Big Data',
       globalDesc: `Liderando transformações em grandes instituições financeiras,
                    combinando processamento de dados em nível de HPC com pipelines
@@ -156,6 +155,7 @@ const strings = {
     },
   },
 };
+
 
 /* =========== Hook de Detecção/Ajuste de Tema =========== */
 function useSystemTheme() {
