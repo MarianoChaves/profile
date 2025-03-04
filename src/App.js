@@ -77,6 +77,13 @@ const strings = {
       email: 'Email',
       linkedIn: 'LinkedIn',
       website: 'Website',
+      formTitle: 'Send Me a Message',
+      formDescription: 'Fill out the form below to open your email client with a pre-populated message.',
+      name: 'Name',
+      subject: 'Subject',
+      message: 'Message',
+      send: 'Send Message',
+      requiredFields: 'Please fill out all required fields.'
     },
     footer: {
       text: 'Elevating Technology and Innovation.',
@@ -131,6 +138,13 @@ const strings = {
       email: 'Email',
       linkedIn: 'LinkedIn',
       website: 'Site',
+      formTitle: 'Envie-me uma Mensagem',
+      formDescription: 'Preencha o formulário abaixo para abrir seu cliente de email com uma mensagem pré-preenchida.',
+      name: 'Nome',
+      subject: 'Assunto',
+      message: 'Mensagem',
+      send: 'Enviar Mensagem',
+      requiredFields: 'Por favor, preencha todos os campos obrigatórios.'
     },
     footer: {
       text: 'Elevando Tecnologia e Inovação.',
@@ -473,39 +487,202 @@ function Projects({ lang }) {
 }
 
 
-/* =========== Contact =========== */
+/* =========== Contact (Versão com Formulário) =========== */
+/* =========== Contact (Versão com Formulário mailto) =========== */
 function Contact({ lang }) {
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validação básica
+    if (!formData.name || !formData.email || !formData.message) {
+      alert(lang === 'en' 
+        ? 'Please fill out all required fields.' 
+        : 'Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+    
+    // Construir o assunto do email
+    const emailSubject = formData.subject 
+      ? formData.subject 
+      : lang === 'en' 
+        ? `Website Contact from ${formData.name}`
+        : `Contato do Website de ${formData.name}`;
+    
+    // Construir o corpo do email
+    const emailBody = `
+${lang === 'en' ? 'Name' : 'Nome'}: ${formData.name}
+${lang === 'en' ? 'Email' : 'Email'}: ${formData.email}
+
+${formData.message}
+    `;
+    
+    // Construir o link mailto
+    const mailtoLink = `mailto:marianoechaves@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Abrir o cliente de email
+    window.location.href = mailtoLink;
+  };
+  
+  const contactInfo = {
+    title: lang === 'en' ? 'Contact Information' : 'Informações de Contato',
+    items: [
+      {
+        icon: '✉️',
+        label: strings[lang].contact.email,
+        value: 'marianoechaves@gmail.com',
+        link: 'mailto:marianoechaves@gmail.com'
+      },
+      {
+        icon: '🔗',
+        label: strings[lang].contact.linkedIn,
+        value: 'linkedin.com/in/mariano-echaves/',
+        link: 'https://linkedin.com/in/mariano-echaves/'
+      },
+      {
+        icon: '🌐',
+        label: strings[lang].contact.website,
+        value: 'marianochaves.com.br',
+        link: 'https://marianochaves.com.br/'
+      },
+      {
+        icon: '📞',
+        label: lang === 'en' ? 'Phone' : 'Telefone',
+        value: '+55 19 99724-8395',
+        link: 'tel:+5519997248395'
+      }
+    ]
+  };
+  
+  const formLabels = {
+    name: lang === 'en' ? 'Name' : 'Nome',
+    email: lang === 'en' ? 'Email' : 'Email',
+    subject: lang === 'en' ? 'Subject' : 'Assunto',
+    message: lang === 'en' ? 'Message' : 'Mensagem',
+    send: lang === 'en' ? 'Send Message' : 'Enviar Mensagem',
+    formTitle: lang === 'en' ? 'Send Me a Message' : 'Envie-me uma Mensagem',
+    formDescription: lang === 'en' 
+      ? 'Fill out the form below to open your email client with a pre-populated message.' 
+      : 'Preencha o formulário abaixo para abrir seu cliente de email com uma mensagem pré-preenchida.'
+  };
+
   return (
     <section id="contact" className="contact section fade-in">
       <h2>{strings[lang].contact.heading}</h2>
-      <p>{strings[lang].contact.text}</p>
-      <p>
-        {strings[lang].contact.email}:
-        {' '}
-        <a href="mailto:marianoechaves@gmail.com">marianoechaves@gmail.com</a>
-      </p>
-      <p>
-        {strings[lang].contact.linkedIn}:
-        <a
-          href="https://linkedin.com/in/mariano-echaves/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ marginLeft: 5 }}
-        >
-          linkedin.com/in/mariano-echaves/
-        </a>
-      </p>
-      <p>
-        {strings[lang].contact.website}:
-        <a
-          href="https://marianochaves.com.br/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ marginLeft: 5 }}
-        >
-          marianochaves.com.br/
-        </a>
-      </p>
+      <div style={{ 
+        width: '100%', 
+        textAlign: 'center', 
+        marginBottom: '30px' 
+      }}>
+        <p style={{ 
+          maxWidth: '750px', 
+          margin: '0 auto', 
+          lineHeight: 1.6,
+          fontSize: '1.1rem'
+        }}>
+          {strings[lang].contact.text}
+        </p>
+      </div>
+      
+      <div className="contact-container">
+        <div className="contact-info">
+          <h3>{contactInfo.title}</h3>
+          
+          {contactInfo.items.map((item, index) => (
+            <div className="contact-info-item" key={`contact-${index}`}>
+              <div className="contact-info-icon">{item.icon}</div>
+              <div className="contact-info-content">
+                <strong>{item.label}:</strong><br />
+                <a 
+                  href={item.link}
+                  target={item.link.startsWith('mailto') ? '_self' : '_blank'}
+                  rel="noopener noreferrer"
+                >
+                  {item.value}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="contact-form-container">
+          <h3>{formLabels.formTitle}</h3>
+          <p className="form-description">{formLabels.formDescription}</p>
+          
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">{formLabels.name}*</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="form-control"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email">{formLabels.email}*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="subject">{formLabels.subject}</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                className="form-control"
+                value={formData.subject}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="message">{formLabels.message}*</label>
+              <textarea
+                id="message"
+                name="message"
+                className="form-control"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+            
+            <button 
+              type="submit" 
+              className="submit-btn"
+            >
+              {formLabels.send}
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   );
 }
