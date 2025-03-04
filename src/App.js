@@ -62,7 +62,7 @@ const strings = {
                        • Sustainable, Scalable Systems Architecture`,
     },
     projects: {
-      heading: 'Projects',
+      heading: 'Projects I\'ve Worked On',
       wingbitsTitle: 'Wingbits — Sweden\'s Startup of the Year',
       wingbitsDesc: `Engineered data infrastructure for Wingbits, delivering
                      hyper-growth readiness and a seamless user experience, 
@@ -124,7 +124,7 @@ const strings = {
                        • Arquiteturas Sustentáveis e Escaláveis`,
     },
     projects: {
-      heading: 'Projetos',
+      heading: 'Projetos que participei',
       wingbitsTitle: 'Wingbits — Startup do Ano na Suécia',
       wingbitsDesc: `Criei a infraestrutura de dados para a Wingbits, garantindo
                      alta escalabilidade e uma experiência de usuário impecável,
@@ -182,7 +182,7 @@ function useSystemTheme() {
 
 /* =========== Botão de Alternância de Tema (Sol/Lua) =========== */
 function ThemeToggleButton({ theme, onToggleTheme }) {
-  const icon = theme === 'light' ? '🌙' : '☀';
+  const icon = theme === 'light' ? '🌙' : '✴';
   return (
     <button className="theme-button" onClick={onToggleTheme}>
       {icon}
@@ -306,31 +306,49 @@ function Projects({ lang }) {
 
       <div className="project-item">
         <h3>{strings[lang].projects.wingbitsTitle}</h3>
-        <img
-          src="/wingbits.png"
-          alt="Wingbits"
-          className="project-image"
-        />
+        <a
+            href="https://wingbits.com" 
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          <img
+            src="/wingbits.png"
+            alt="Wingbits"
+            className="project-image"
+          />
+        </a>
         <p>{strings[lang].projects.wingbitsDesc}</p>
       </div>
 
       <div className="project-item">
         <h3>{strings[lang].projects.globalTitle}</h3>
-        <img
-          src="/itau.png"
-          alt="Global AI & Big Data"
-          className="project-image"
-        />
+        <a
+            href="https://aws.amazon.com/solutions/case-studies/itau-ml-case-study/?nc1=h_ls" 
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          <img
+            src="/itau.png"
+            alt="Global AI & Big Data"
+            className="project-image"
+          />
+        </a>
         <p>{strings[lang].projects.globalDesc}</p>
       </div>
 
       <div className="project-item">
         <h3>{strings[lang].projects.numcmcTitle}</h3>
+        <a
+            href="https://github.com/MarianoChaves/MCMC" 
+            target="_blank"
+            rel="noopener noreferrer"
+          >
         <img
           src="/numcmc.png"
           alt="nuMCMC"
           className="project-image"
         />
+        </a>
         <p>{strings[lang].projects.numcmcDesc}</p>
       </div>
     </section>
@@ -362,7 +380,7 @@ function Contact({ lang }) {
       <p>
         {strings[lang].contact.website}:
         <a
-          href="https://marianochaves.github.io/profile"
+          href="https://marianochaves.com.br/"
           target="_blank"
           rel="noopener noreferrer"
           style={{ marginLeft: 5 }}

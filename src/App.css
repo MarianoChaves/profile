@@ -113,7 +113,7 @@ html {
   cursor: pointer;
   background-color: var(--card-bg);
   border: 1px solid #999;
-  border-radius: 4px;
+  border-radius: 40px;
   color: inherit;
   transition: background-color 0.3s;
 }
@@ -315,3 +315,33 @@ html {
   z-index: 0;  /* valor alto para ficar atrás do conteúdo, porém visível */
   pointer-events: none; /* cliques passam direto pelo canvas */
 }
+
+/* Estilo geral para links clicáveis */
+a {
+  color: #007acc; /* cor inicial */
+  text-decoration: none;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse ou focar no link */
+a:hover,
+a:focus {
+  color: #005fa3; /* cor mais escura no hover */
+  text-decoration: underline; 
+}
+
+/* Se quiser um efeito adicional (opcional), pode usar borda inferior ao invés de sublinhado: */
+/*
+a {
+  color: #007acc;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #005fa3;
+  border-bottom-color: #005fa3;
+}
+*/
