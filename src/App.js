@@ -52,17 +52,8 @@ const strings = {
              into real impact, from financial market giants to award-winning startups.`,
     },
     expertise: {
-      heading: 'Expertise',
-      hardSkillsTitle: 'Technical Mastery',
-      hardSkillsList: `• Data Science and Statistics
-                       • AI, ML, AIOps & Data Pipelines
-                       • AWS, DevOps, CI/CD & Terraform
-                       • Python, C++, Kotlin, PySpark`,
-      softSkillsTitle: 'Strategic Impact',
-      softSkillsList: `• Leading End-to-End Transformations
-                       • Translating Complex Tech into Business ROI
-                       • Mentoring Teams & Fostering an Innovation Culture
-                       • Sustainable and Scalable Systems Architecture`,
+      heading: 'Advanced Expertise',
+      subtitle: 'Combining cutting-edge technical mastery with strategic leadership to deliver transformative solutions across data science, AI, cloud, and software engineering domains.',
     },
     projects: {
       heading: 'Projects I was involved in',
@@ -114,17 +105,8 @@ const strings = {
              até startups premiadas.`,
     },
     expertise: {
-      heading: 'Expertise',
-      hardSkillsTitle: 'Domínio Técnico',
-      hardSkillsList: `• Ciência de Dados e Estatística
-                       • AI, ML, AIOps & Data Pipelines
-                       • AWS, DevOps, CI/CD & Terraform
-                       • Python, C++, Kotlin, PySpark`,
-      softSkillsTitle: 'Impacto Estratégico',
-      softSkillsList: `• Liderança de Transformações End-to-End
-                       • Tradução de Tecnologia Complexa em ROI de Negócios
-                       • Mentoria de Equipes & Cultura de Inovação
-                       • Arquiteturas Sustentáveis e Escaláveis`,
+      heading: 'Competências Avançadas',
+      subtitle: 'Combinando domínio técnico de ponta com liderança estratégica para entregar soluções transformadoras em ciência de dados, IA, cloud e engenharia de software.',
     },
     projects: {
       heading: 'Projetos envolvidos',
@@ -261,33 +243,172 @@ function About({ lang }) {
 }
 
 /* =========== Skills =========== */
+/* =========== Skills (Versão Avançada e Integrada) =========== */
 function Skills({ lang }) {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const skillsRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => {
+      if (skillsRef.current) {
+        observer.unobserve(skillsRef.current);
+      }
+    };
+  }, []);
+
+  const technicalSkills = [
+    {
+      icon: "🧠", 
+      title: lang === 'en' ? "AI, ML & Data Science" : "IA, ML & Ciência de Dados",
+      description: lang === 'en' 
+        ? "Building intelligent systems and transforming data into business value" 
+        : "Construção de sistemas inteligentes e transformação de dados em valor de negócio",
+      skills: [
+        {
+          name: "Deep Learning & Data Science",
+          level: 95,
+          badges: ["PyTorch", "TensorFlow", "Scikit-Learn"]
+        },
+        {
+          name: "Big Data Processing",
+          level: 92,
+          badges: ["Spark", "AWS Glue"]	
+        },
+        {
+          name: "Statistical Analysis & Modeling Tools",
+          level: 95,
+          badges: ["Advanced Stats", "Hypothesis Testing", "Sagemaker", "R"]
+        },
+        {
+          name: "NLP & Computer Vision",
+          level: 90,
+          badges: ["LLMs", "OpenCV", "LangChain"]
+        }
+      ]
+    },
+    {
+      icon: "☁️", 
+      title: lang === 'en' ? "Cloud & Infrastructure" : "Cloud & Infraestrutura",
+      description: lang === 'en' 
+        ? "Designing scalable, enterprise-grade cloud architectures" 
+        : "Projetando arquiteturas cloud escaláveis de nível empresarial",
+      skills: [
+        {
+          name: "AWS Architecture & Services",
+          level: 90,
+          badges: ["EC2", "S3", "Lambda", "API Gateway", "CloudFront"]
+        },
+        {
+          name: "Infrastructure as Code",
+          level: 85,
+          badges: ["Terraform", "CloudFormation"]
+        },
+        {
+          name: "Containerization",
+          level: 88,
+          badges: ["Docker", "ECS", "ECR"]
+        },
+        {
+          name: "CI/CD Pipelines",
+          level: 92,
+          badges: ["Gitlab Pipelines", "GitHub Actions"]
+        }
+      ]
+    },
+    {
+      icon: "💻", 
+      title: lang === 'en' ? "Software Engineering" : "Engenharia de Software",
+      description: lang === 'en' 
+        ? "Building robust, maintainable, and high-performance systems" 
+        : "Construindo sistemas robustos, sustentáveis e de alto desempenho",
+      skills: [
+        {
+          name: "Languages & Frameworks",
+          level: 98,
+          badges: ["Python", "C++", "Java", "React", "Node.js", "Kotlin"]	
+        },
+        {
+          name: "C++ & High-Performance Computing",
+          level: 90,
+          badges: ["HPC", "CUDA"]
+        },
+        {
+          name: "API Design & Development",
+          level: 85,
+          badges: ["REST", "WebSockets", "OAuth", "JWT",]
+        },
+        {
+          name: "Microservices Architecture",
+          level: 88,
+          badges: ["System Design"]
+        }
+      ]
+    }
+  ];
+
   return (
-    <section id="skills" className="skills section fade-in">
+    <section id="skills" className="skills section fade-in" ref={skillsRef}>
       <h2>{strings[lang].expertise.heading}</h2>
-      <div className="skills-container">
-        <div className="hard-skills">
-          <h3>{strings[lang].expertise.hardSkillsTitle}</h3>
-          <p>
-            {strings[lang].expertise.hardSkillsList.split('\n').map((line, idx) => (
-              <React.Fragment key={idx}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </p>
-        </div>
-        <div className="soft-skills">
-          <h3>{strings[lang].expertise.softSkillsTitle}</h3>
-          <p>
-            {strings[lang].expertise.softSkillsList.split('\n').map((line, idx) => (
-              <React.Fragment key={idx}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </p>
-        </div>
+      
+      <div className="skills-intro">
+        <p>{strings[lang].expertise.subtitle}</p>
+      </div>
+      
+      <div className={`skills-container ${isVisible ? 'skill-visible' : ''}`}>
+        {technicalSkills.map((domain, index) => (
+          <div className="skill-card technical" key={`domain-${index}`}>
+            <div className="skill-header">
+              <div className="skill-icon">{domain.icon}</div>
+              <h3 className="skill-title">{domain.title}</h3>
+              <p className="skill-subtitle">{domain.description}</p>
+            </div>
+            
+            <div className="skill-body">
+              {domain.skills.map((skill, skillIndex) => (
+                <div className="skill-item" key={`skill-${index}-${skillIndex}`}>
+                  <div className="skill-name">
+                    <span>{skill.name}</span>
+                    <span className="skill-percentage">{skill.level}%</span>
+                  </div>
+                  
+                  <div className="skill-badges">
+                    {skill.badges.map((badge, badgeIndex) => (
+                      <span className="skill-badge" key={`badge-${skillIndex}-${badgeIndex}`}>
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className="skill-bar">
+                    <div 
+                      className="skill-progress" 
+                      style={{ '--skill-level': `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
