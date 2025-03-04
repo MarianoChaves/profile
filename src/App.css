@@ -14,11 +14,12 @@ html {
 
 /* 
   2) Theme Variables & Font 
+  - O header usa degradê no light mode e fundo sólido no dark mode
 */
 .light {
   --bg-color: #fafafa;
   --text-color: #333;
-  --header-bg: #fff;
+  --header-bg: linear-gradient(90deg, #ffffff 0%, #f2f2f2 100%);
   --header-text: #333;
   --footer-bg: #333;
   --footer-text: #fff;
@@ -43,23 +44,6 @@ html {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Seletor de Idioma */
-.language-selector {
-  padding: 8px 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  background-color: var(--card-bg);
-  border: 1px solid #999;
-  border-radius: 4px;
-  color: inherit;
-  transition: background-color 0.3s, opacity 0.3s;
-  margin-left: 10px;
-}
-
-.language-selector:hover {
-  opacity: 0.8;
-}
-
 /* 
   3) Layout Helpers 
   - Container centralizado
@@ -71,59 +55,172 @@ html {
 }
 
 /* 
-  4) Header & Nav 
+  4) Header & Nav - Header aprimorado 
+  - Usa as variáveis de tema para o fundo e texto
 */
 .header {
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  background-color: var(--header-bg);
+  background: var(--header-bg);
   color: var(--header-text);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 15px 30px;
 }
 
 .logo {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .nav a {
   margin: 0 15px;
   text-decoration: none;
-  color: inherit;
+  color: var(--header-text);
   font-weight: 500;
-  transition: opacity 0.3s;
+  transition: color 0.3s;
 }
 
 .nav a:hover {
-  opacity: 0.7;
+  color: #007acc;
 }
 
-.theme-button {
-  padding: 8px 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
   background-color: var(--card-bg);
-  border: 1px solid #999;
-  border-radius: 40px;
-  color: inherit;
-  transition: background-color 0.3s;
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.theme-button:hover {
-  opacity: 0.8;
+.dropdown-toggle:hover {
+  background-color: var(--card-bg);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.dropdown-toggle .arrow {
+  font-size: 0.8rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: var(--card-bg);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 140px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: var(--text-color);
+}
+
+.dropdown-menu li:hover {
+  background-color: rgba(0, 122, 204, 0.1);
+}
+
+.dropdown-menu li .flag {
+  margin-right: 8px;
 }
 
 /* 
-  5) Hero 
+  5) Toggle Switch para Modo de Cor (Sol/Lua)
+  - Inspirado em Material Design com efeito suave e ícones
+*/
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: background-color 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: transform 0.4s;
+  border-radius: 50%;
+}
+
+/* Ícone sol (quando desmarcado) */
+.slider:after {
+  content: "☀";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #f39c12;
+  transition: opacity 0.4s;
+}
+
+/* Quando ativado (dark mode) */
+.toggle-switch input:checked + .slider {
+  background-color: #555;
+}
+
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Ícone lua (quando ativado) */
+.toggle-switch input:checked + .slider:after {
+  content: "🌙";
+  left: 5px;
+  right: auto;
+  color: #f1c40f;
+}
+
+/* 
+  6) Hero 
 */
 .hero {
   min-height: 90vh;
@@ -163,8 +260,7 @@ html {
 }
 
 /* 
-  6) Sections 
-  - Espaçamento aprimorado para um visual mais clean
+  7) Sections 
 */
 .section {
   padding: 100px 20px;
@@ -192,7 +288,7 @@ html {
 }
 
 /* 
-  7) Fade-In 
+  8) Fade-In 
 */
 .fade-in {
   opacity: 0;
@@ -208,7 +304,7 @@ html {
 }
 
 /* 
-  8) About - estilo original
+  9) About - estilo original 
 */
 .about-container {
   display: flex;
@@ -232,7 +328,7 @@ html {
 }
 
 /* 
-  9) Skills 
+  10) Skills 
 */
 .skills-container {
   display: flex;
@@ -257,7 +353,7 @@ html {
 }
 
 /* 
-  10) Projects 
+  11) Projects 
 */
 .projects .projects-container {
   display: grid;
@@ -292,7 +388,7 @@ html {
 }
 
 /* 
-  11) Contact 
+  12) Contact 
 */
 .contact p {
   margin: 10px 0;
@@ -301,7 +397,7 @@ html {
 }
 
 /* 
-  12) Footer 
+  13) Footer 
 */
 .footer {
   background-color: var(--footer-bg);
@@ -313,7 +409,7 @@ html {
 }
 
 /* 
-  13) Neural Network Background
+  14) Neural Network Background 
 */
 .neural-network-canvas {
   position: fixed;
@@ -326,7 +422,7 @@ html {
 }
 
 /* 
-  14) Links 
+  15) Links 
 */
 a {
   color: #007acc;
@@ -339,3 +435,4 @@ a:focus {
   color: #005fa3;
   text-decoration: underline;
 }
+

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import NeuralNetworkBackground from './neural-network-background';
+import LanguageDropdown from './LanguageDropdown';
+
+// No seu Header, por exemplo:
+
 
 /* =========== HOOK DE DETECÇÃO/AJUSTE DE LINGUAGEM =========== */
 function useLanguage() {
@@ -182,27 +186,18 @@ function useSystemTheme() {
 
 /* =========== Botão de Alternância de Tema (Sol/Lua) =========== */
 function ThemeToggleButton({ theme, onToggleTheme }) {
-  const icon = theme === 'light' ? '🌙' : '✴';
   return (
-    <button className="theme-button" onClick={onToggleTheme}>
-      {icon}
-    </button>
+    <label className="toggle-switch">
+      <input
+        type="checkbox"
+        checked={theme === 'dark'}
+        onChange={onToggleTheme}
+      />
+      <span className="slider"></span>
+    </label>
   );
 }
 
-/* =========== Seletor de Idioma =========== */
-function LanguageSelector({ lang, onChangeLanguage }) {
-  return (
-    <select
-      className="language-selector"
-      value={lang}
-      onChange={onChangeLanguage}
-    >
-      <option value="en">English</option>
-      <option value="pt">Português</option>
-    </select>
-  );
-}
 
 
 /* =========== Header =========== */
@@ -223,7 +218,7 @@ function Header({ theme, onToggleTheme, lang, onChangeLanguage }) {
         <ThemeToggleButton theme={theme} onToggleTheme={onToggleTheme} />
 
         {/* Seletor de idioma */}
-        <LanguageSelector lang={lang} onChangeLanguage={onChangeLanguage} />
+        <LanguageDropdown lang={lang} onChangeLanguage={onChangeLanguage} />
       </div>
     </header>
   );
