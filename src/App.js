@@ -385,7 +385,7 @@ function Contact({ lang }) {
           rel="noopener noreferrer"
           style={{ marginLeft: 5 }}
         >
-          marianochaves.github.io
+          marianochaves.com.br/
         </a>
       </p>
     </section>
