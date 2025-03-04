@@ -252,7 +252,7 @@ function About({ lang }) {
         <h2>{strings[lang].about.heading}</h2>
         <div className="about-content">
           <img
-            src="/profile/profile.png"
+            src="/profile.png"
             alt="Mariano"
             className="profile-photo"
           />
@@ -312,7 +312,7 @@ function Projects({ lang }) {
             rel="noopener noreferrer"
           >
           <img
-            src="/profile/wingbits.png"
+            src="/wingbits.png"
             alt="Wingbits"
             className="project-image"
           />
@@ -328,7 +328,7 @@ function Projects({ lang }) {
             rel="noopener noreferrer"
           >
           <img
-            src="/profile/itau.png"
+            src="/itau.png"
             alt="Global AI & Big Data"
             className="project-image"
           />
@@ -344,7 +344,7 @@ function Projects({ lang }) {
             rel="noopener noreferrer"
           >
         <img
-          src="/profile/numcmc.png"
+          src="/numcmc.png"
           alt="nuMCMC"
           className="project-image"
         />
