@@ -93,6 +93,31 @@ html {
   color: #007acc;
 }
 
+/* Ajustes no Header para telas menores */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav a {
+    margin: 5px;
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+
 .language-dropdown {
   position: relative;
   display: inline-block;
