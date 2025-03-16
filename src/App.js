@@ -198,22 +198,33 @@ function ThemeToggleButton({ theme, onToggleTheme }) {
 
 /* =========== Header =========== */
 function Header({ theme, onToggleTheme, lang, onChangeLanguage }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className="header">
       <div className="header-container">
         <div className="logo">{strings[lang].header.logo}</div>
-        <nav className="nav">
-          <a href="#hero">{strings[lang].header.home}</a>
-          <a href="#about">{strings[lang].header.about}</a>
-          <a href="#skills">{strings[lang].header.skills}</a>
-          <a href="#projects">{strings[lang].header.projects}</a>
-          <a href="#contact">{strings[lang].header.contact}</a>
+        
+        {/* Ícone do menu hamburguer */}
+        <div className="menu-icon" onClick={toggleMenu}>
+          &#9776; {/* Unicode para o ícone de três linhas */}
+        </div>
+
+        {/* Navegação com classe condicional */}
+        <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
+          <a href="#hero" onClick={toggleMenu}>{strings[lang].header.home}</a>
+          <a href="#about" onClick={toggleMenu}>{strings[lang].header.about}</a>
+          <a href="#skills" onClick={toggleMenu}>{strings[lang].header.skills}</a>
+          <a href="#projects" onClick={toggleMenu}>{strings[lang].header.projects}</a>
+          <a href="#contact" onClick={toggleMenu}>{strings[lang].header.contact}</a>
         </nav>
 
-        {/* Botão para mudar tema */}
+        {/* Botão de tema e dropdown de idioma */}
         <ThemeToggleButton theme={theme} onToggleTheme={onToggleTheme} />
-
-        {/* Seletor de idioma */}
         <LanguageDropdown lang={lang} onChangeLanguage={onChangeLanguage} />
       </div>
     </header>

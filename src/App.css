@@ -58,6 +58,7 @@ html {
   4) Header & Nav - Header aprimorado 
   - Usa as variáveis de tema para o fundo e texto
 */
+/* Estilos básicos do header já existentes */
 .header {
   position: fixed;
   width: 100%;
@@ -81,6 +82,19 @@ html {
   letter-spacing: 0.5px;
 }
 
+/* Estilos do ícone do menu hamburguer */
+.menu-icon {
+  display: none; /* Escondido por padrão em telas grandes */
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Estilos da navegação */
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav a {
   margin: 0 15px;
   text-decoration: none;
@@ -93,28 +107,64 @@ html {
   color: #007acc;
 }
 
-/* Ajustes no Header para telas menores */
+/* Media query para telas menores */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
     padding: 10px 15px;
   }
 
+  .menu-icon {
+    display: block; /* Exibe o ícone em telas pequenas */
+  }
+
   .nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    display: none; /* Esconde os links por padrão */
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background: var(--header-bg);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav.active {
+    display: flex; /* Exibe os links quando ativo */
   }
 
   .nav a {
-    margin: 5px;
-    font-size: 0.9rem;
+    margin: 10px 0;
+    font-size: 1.1rem;
   }
 
+  /* Ajuste para o toggle de tema e dropdown de idioma */
+  .toggle-switch,
+  .language-dropdown {
+    margin-left: 10px;
+  }
+}
+
+.nav {
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(-100%);
+}
+
+.nav.active {
+  transform: translateY(0);
+}
+
+@media (min-width: 769px) {
+  .nav {
+    transform: none; /* Remove a animação em telas grandes */
+  }
+}
+
+@media (max-width: 768px) {
   .logo {
-    font-size: 1.5rem;
+    display: none;
   }
 }
 
